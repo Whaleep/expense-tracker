@@ -6,12 +6,12 @@ const recordSchema = new Schema({
     type: String,
     require: true
   },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
+  },
   date: {
     type: Date,
-    require: true
-  },
-  category: {
-    type: String,
     require: true
   },
   amount: {

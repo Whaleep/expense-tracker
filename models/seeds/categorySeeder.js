@@ -2,34 +2,21 @@ const Category = require('../category')
 
 const db = require('../../config/mongoose')
 
-categorySeedData = [
-  {
-    name: 'housing',
-    title: '家居物業',
-    icon:''
-  }, {
-    name: 'transportation',
-    title: '交通出行',
-    icon: ''
-  }, {
-    name: 'entertainment',
-    title: '休閒娛樂',
-    icon: ''
-  }, {
-    name: 'food',
-    title: '餐飲食品',
-    icon: ''
-  }, {
-    name: 'other',
-    title: '其他',
-    icon: ''
-  }
-]
+const categorySeedData = [
+  ['家居物業', 'fa-home'],
+  ['交通出行', 'fa-shuttle-van'],
+  ['休閒娛樂', 'fa-grin-beam'],
+  ['餐飲食品', 'fa-utensils'],
+  ['其他', 'fa-pen']
+].map(category => ({
+  title: category[0],
+  icon: category[1]
+}))
 
-db.once('open', ()=>{
+db.once('open', () => {
   Category.create(categorySeedData)
-  .then(()=>{
-    console.log('Category seeder done.')
-    return db.close()
-  })
+    .then(() => {
+      console.log('Category seeder done.')
+      return db.close()
+    })
 })

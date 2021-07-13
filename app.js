@@ -12,6 +12,8 @@ app.engine('hbs', exphbs({
   helpers: { toDate }
 }))
 app.set('view engine', 'hbs')
+
+app.use(express.urlencoded({ extended: true }))
 app.use(routes)
 app.use(express.static('public'))
 

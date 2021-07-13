@@ -1,7 +1,7 @@
 <div class="container d-flex flex-column align-items-end col-sm-9">
   <div class="container d-flex flex-column col-8">
     <form action="" class="my-3 my-4">
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select">
         <option selected>類別</option>
         {{#each categories}}
         <option value="{{this._id}}">{{this.title}}</option>
@@ -32,8 +32,10 @@
     </div>
     {{/each}}
 
-  <div class="container col-md-9 my-3">
-    <button type="button" class="col-5 btn bg-orange text-white">新增支出</button>
-  </div>
+    <div class="container col-md-9 my-3">
+      <a href="/records/new">
+        <button type="button" class="col-5 btn bg-orange text-white">新增支出</button>
+      </a>
+    </div>
 
-</div>
+  </div>

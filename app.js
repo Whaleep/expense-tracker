@@ -1,9 +1,10 @@
 
 const express = require('express')
-const app = express()
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
+const app = express()
 
 const toDate = require('./tools/handlebarsHelpers')
 app.engine('hbs', exphbs({
@@ -14,6 +15,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 app.use(routes)
 app.use(express.static('public'))
 

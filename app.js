@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
 const app = express()
+const PORT = process.env.PORT || 3000
 
 const toDate = require('./tools/handlebarsHelpers')
 app.engine('hbs', exphbs({
@@ -19,6 +20,6 @@ app.use(methodOverride('_method'))
 app.use(routes)
 app.use(express.static('public'))
 
-app.listen(3000, () => {
-  console.log('Express is lintening on http://localhost:3000')
+app.listen(PORT, () => {
+  console.log(`Express is lintening on http://localhost:${PORT}`)
 })

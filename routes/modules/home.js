@@ -6,7 +6,7 @@ const Record = require('../../models/record')
 
 router.get('/', (req, res) => {
   const category = req.query.category
-  const filter = {}
+  const filter = { userId: req.user._id }
   if (category) { filter.category = category }
 
   Promise.all([

@@ -11,7 +11,7 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  Record.create(req.body)
+  Record.create({ ...req.body, userId: req.user._id })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   Promise.all([
     Category.find().lean(),
-    Record.findById(req.params.id).lean()
+    Record.findOne({_id: req.params.id, userId:req.user._id}).lean()
   ])
     .then(values => {
       const [categories, record] = values
@@ -30,8 +30,8 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const _id = req.params.id
+  return Record.findOne({ _id, userId: req.user._id })
     .then(record => {
       Object.assign(record, req.body)
       return record.save()
@@ -42,8 +42,7 @@ router.put('/:id', (req, res) => {
 
 // delete
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  return Record.findOne({ _id: req.params.id, userId: req.user._id })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

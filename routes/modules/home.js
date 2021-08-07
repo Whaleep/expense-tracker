@@ -9,17 +9,12 @@ router.get('/', (req, res) => {
   const filter = {}
   if (category) { filter.category = category }
 
-  // asynchronous
-  const categories = []
-  Category.find()
-    .lean()
-    .then(category => categories.push(...category))
-    .catch(error => console.log(error))
-
-  Record.find(filter)
-    .populate('category')
-    .lean()
-    .then((records) => {
+  Promise.all([
+    Category.find().lean(),
+    Record.find(filter).populate('category').lean()
+  ])
+    .then(values => {
+      const [categories, records] = values
       let totalAmount = 0
       records.forEach(record => totalAmount += record.amount)
       res.render('index', { categories, category, records, totalAmount })

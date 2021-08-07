@@ -4,16 +4,10 @@ const router = express.Router()
 const Category = require('../../models/category')
 const Record = require('../../models/record')
 
-// asynchronous
-const categories = []
-Category.find()
-  .lean()
-  .then(category => categories.push(...category))
-  .catch(error => console.log(error))
-
 // create
 router.get('/new', (req, res) => {
-  res.render('new', { categories })
+  Category.find().lean()
+    .then(categories => res.render('new', { categories }))
 })
 
 router.post('/', (req, res) => {
@@ -24,10 +18,14 @@ router.post('/', (req, res) => {
 
 // edit
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
-    .lean()
-    .then(record => res.render('edit', { categories, record }))
+  Promise.all([
+    Category.find().lean(),
+    Record.findById(req.params.id).lean()
+  ])
+    .then(values => {
+      const [categories, record] = values
+      return res.render('edit', { categories, record })
+    })
     .catch(error => console.log(error))
 })
 

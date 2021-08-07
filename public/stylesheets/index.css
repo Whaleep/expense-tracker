@@ -1,4 +1,11 @@
 
+ul,
+li {
+  list-style-type: none; /* 拿掉前方圈圈 */
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   min-width: 576px;
   max-width: 992px;
@@ -20,6 +27,14 @@
 
 .bg-orange {
   background-color: var(--bs-orange);
+}
+
+.nav-list {
+  height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  grid-gap: 1rem;
 }
 
 .fs-7 {

@@ -1,7 +1,9 @@
 
 const express = require('express')
+const session=require('express-session')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const routes = require('./routes')
 require('./config/mongoose')
 const app = express()
@@ -15,10 +17,25 @@ app.engine('hbs', exphbs({
 }))
 app.set('view engine', 'hbs')
 
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-app.use(routes)
+
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  next()
+})
+
 app.use(express.static('public'))
+app.use(routes)
+
 
 app.listen(PORT, () => {
   console.log(`Express is lintening on http://localhost:${PORT}`)

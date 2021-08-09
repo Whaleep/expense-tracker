@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   Promise.all([
     Category.find().lean(),
-    Record.findOne({_id: req.params.id, userId:req.user._id}).lean()
+    Record.findOne({ _id: req.params.id, userId: req.user._id }).lean()
   ])
     .then(values => {
       const [categories, record] = values

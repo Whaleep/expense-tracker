@@ -6,7 +6,7 @@ const categorySchema = new Schema({
     type: String,
     require: true
   },
-  icon:{
+  icon: {
     type: String
   },
   records: [{

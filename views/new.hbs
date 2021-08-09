@@ -1,55 +1,30 @@
-<div class="container col-md-6 my-3 my-md-5">
-  <form action="/records" method="post" class="needs-validation" novalidate>
+<div class="container my-3 my-md-5">
+  <form action="/records" method="post" class="main-form needs-validation" novalidate>
 
-    <div class="mb-3 row">
-      <div class="col-auto fs-7">*必填欄位</div>
-      <div class="col-auto">請輸入你的支出</div>
-    </div>
+    <div class="fs-7">*必填欄位</div>
+    <div>請輸入你的支出</div>
 
-    <div class="mb-3 row">
-      <label for="name" class="col-auto col-form-label">名稱*：</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="name" id="name" value="" required>
-      </div>
-    </div>
+    <label for="name" class="col-form-label">名稱*：</label>
+    <input type="text" class="form-control" name="name" id="name" value="" required>
 
-    <div class="mb-3 row">
-      <label for="date" class="col-auto col-form-label">日期*：</label>
-      <div class="col-sm-10">
-        <input type="date" class="form-control" name="date" id="date" value="" required>
-      </div>
-    </div>
+    <label for="date" class="col-form-label">日期*：</label>
+    <input type="date" class="form-control" name="date" id="date" value="" required>
 
-    <div class="mb-3 row">
-      <label for="category" class="col-auto col-form-label">類別*：</label>
-      <div class="col-sm-10">
-        <select class="form-select" name="category" id="category" date-value="" aria-label="Default select" required>
-          {{#each categories}}
-          <option value="{{this._id}}">{{this.title}}</option>
-          {{/each}}
-        </select>
-      </div>
-    </div>
+    <label for="category" class="col-form-label">類別*：</label>
+    <select class="form-select" name="category" id="category" date-value="" aria-label="Default select" required>
+      {{#each categories}}
+      <option value="{{this._id}}">{{this.title}}</option>
+      {{/each}}
+    </select>
 
-    <div class="mb-3 row">
-      <label for="amount" class="col-auto col-form-label">金額*：</label>
-      <div class="col-sm-10">
-        <input type="number" class="form-control" name="amount" id="amount" value="" required>
-      </div>
-    </div>
+    <label for="amount" class="col-form-label">金額*：</label>
+    <input type="number" class="form-control" name="amount" id="amount" value="" required>
 
-    <div class="mb-3 row">
-      <label for="merchant" class="col-auto col-form-label">商家：</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="merchant" id="merchant" value="">
-      </div>
-    </div>
+    <label for="merchant" class="col-auto col-form-label">商家：</label>
+    <input type="text" class="form-control" name="merchant" id="merchant" value="">
 
-    <div class="my-5 row d-flex justify-content-center">
-      <div class="col-sm-8">
-        <button type="submit" class="btn btn-outline-dark col-12">新增支出</button>
-      </div>
-    </div>
+    <div></div>
+    <button type="submit" class="btn btn-outline-dark col-12">新增支出</button>
 
   </form>
 </div>

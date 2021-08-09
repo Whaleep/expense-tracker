@@ -18,6 +18,14 @@ li {
   margin: 1.5rem 0;
 }
 
+.main-form {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 80px minmax(300px, 450px);
+  grid-gap: 1.5rem 1rem;
+  width: 100%;
+}
+
 .total-amount {
   font-size: 3em;
   /* font-weight: bold; */
@@ -30,6 +38,7 @@ li {
   font-size: 2em;
   color: #aee0ea;
   width: 40px;
+  cursor: pointer;
 }
 
 .bg-orange {

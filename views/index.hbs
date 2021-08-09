@@ -1,7 +1,16 @@
 <div class="container d-flex flex-column align-items-end col-md-9">
   <div class="container d-flex flex-column col-sm-8">
-    <form action="/" method="GET" class="my-3 my-4">
-      <select class="form-select" name="category" id="category-filter" data-value="{{category}}" aria-label="Default select">
+
+    <form action="/" method="GET" class="filter">
+      <select class="form-select" name="month" id="month-filter" data-value="{{month}}" aria-label="month select">
+        <option value="" selected>全部月份</option>
+        {{#each months}}
+        <option>{{this._id}}</option>
+        {{/each}}
+      </select>
+      {{!-- <input type="month" class="form-control" name="month" id="month-filter" value="{{month}}" required> --}}
+
+      <select class="form-select" name="category" id="category-filter" data-value="{{category}}" aria-label="category select">
         <option value="" selected>全部類別</option>
         {{#each categories}}
         <option value="{{this._id}}">{{this.title}}</option>
@@ -20,14 +29,14 @@
     {{#each records}}
     <div class="row">
       <div class="col col-auto">
-        
+
         <a href="/?category={{this.category._id}}" class="">
           <i class="fas {{this.category.icon}} category-icon"></i>
         </a>
       </div>
       <div class="col">
         <div>{{this.name}}</div>
-        <div class="fs-7">{{toDate this.date}}</div>
+        <div class="fs-7">{{toDate this.date}} {{this.merchant}}</div>
       </div>
       <div class="col col-auto text-end">{{this.amount}}</div>
       <div class="col col-auto">

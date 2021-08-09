@@ -11,6 +11,13 @@ li {
   max-width: 992px;
 }
 
+.filter {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 2rem;
+  margin: 1.5rem 0;
+}
+
 .total-amount {
   font-size: 3em;
   /* font-weight: bold; */

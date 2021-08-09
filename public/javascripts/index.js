@@ -7,7 +7,10 @@ document.querySelector('#data-panel').addEventListener('click', (event) => {
   }
 })
 
-// category query filter 
-const categoryFilter = document.querySelector('#category-filter')
-categoryFilter.value = categoryFilter.dataset.value
-categoryFilter.addEventListener('change', () => categoryFilter.parentElement.submit())
+// query filter
+const filterIds = ['#month-filter', '#category-filter']
+filterIds.forEach(filterId => {
+  const filter = document.querySelector(filterId)
+  filter.value = filter.dataset.value
+  filter.addEventListener('change', () => filter.parentElement.submit())
+})

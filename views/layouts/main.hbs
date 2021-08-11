@@ -18,8 +18,8 @@
         {{#if isAuthenticated}}{{user.name}}的{{/if}}家庭記帳本
       </a>
       <ul class="nav-list">
-        <a class="btn btn-outline-secondary" href="/records/new">新增支出</a>
         {{#if isAuthenticated}}
+        <a class="btn btn-outline-secondary" href="/records/new">新增支出</a>
         <a class="btn btn-outline-secondary" href="/users/logout">Logout</a>
         {{else}}
         <a class="btn btn-outline-secondary" href="/users/login">Login</a>
